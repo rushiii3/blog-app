@@ -1,103 +1,173 @@
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import {
+  Shield,
+  Lock,
+  AlertTriangle,
+  Eye,
+  Bell,
+  ChevronRight,
+  ArrowRight,
+} from "lucide-react";
+import ArticleSection from "@/components/ArticleSection";
 
-export default function Home() {
+
+
+export default async function LandingPage() {
+  // const schemaData = {
+  //   "@context": "https://schema.org",
+  //   "@type": "BlogPosting",
+  //   headline: "Stay Secure in the Digital World",
+  //   description: "Expert insights and the latest news on cybersecurity.",
+  //   author: {
+  //     "@type": "Person",
+  //     name: "SecureBlog Team",
+  //   },
+  //   publisher: {
+  //     "@type": "Organization",
+  //     name: "SecureBlog",
+  //     logo: {
+  //       "@type": "ImageObject",
+  //       url: "/logo.png",
+  //     },
+  //   },
+  //   datePublished: "2024-03-15",
+  //   dateModified: "2024-03-16",
+  // };
+
+  const data = await fetch("http://localhost:3000/api")
+  const posts = await data.json()  
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <>
+      <div className="flex min-h-screen flex-col bg-background">
+        <main className="flex-1">
+          <HeroSection />
+          <FeaturesSection />
+          <ArticleSection data={posts} />
+        </main>
+        <Footer />
+      </div>
+    </>
+  );
+}
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+function HeroSection() {
+  return (
+    <section className="relative w-full overflow-hidden pt-16 md:pt-24 lg:pt-32">
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(var(--primary-rgb),0.15),transparent_50%)]"></div>
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="flex flex-col items-center text-center">
+          <div className="inline-flex items-center rounded-full border bg-background px-3 py-1 text-sm shadow-sm">
+            <Shield className="mr-1 h-4 w-4 text-primary" />
+            <span>SecureBlog</span>
+          </div>
+          <h1 className="mt-6 max-w-4xl text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
+            Stay <span className="text-primary">Secure</span> in the Digital
+            World
+          </h1>
+          <p className="mt-6 max-w-[700px] text-muted-foreground md:text-xl">
+            Expert insights, latest news, and practical advice on cybersecurity
+            to protect your digital life.
+          </p>
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+            <Button size="lg" className="rounded-full px-8">
+              Explore Articles
+              <ChevronRight className="ml-2 h-4 w-4" />
+            </Button>
+            <Button size="lg" variant="outline" className="rounded-full px-8">
+              Join Community
+            </Button>
+          </div>
+          <div className="mt-16 w-full max-w-5xl overflow-hidden rounded-3xl border bg-muted/30 shadow-xl">
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+              src="/image1.avif"
+              width={1000}
+              height={500}
+              alt="Cybersecurity dashboard"
+              className="w-full object-cover"
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+      </div>
+    </section>
+  );
+}
+
+function FeaturesSection() {
+  return (
+    <section className="w-full py-12 md:py-24 lg:py-32">
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center space-y-4 text-center">
+          <div className="inline-flex items-center rounded-full border bg-background px-3 py-1 text-sm shadow-sm">
+            <Lock className="mr-1 h-4 w-4 text-primary" />
+            <span>Expert Insights</span>
+          </div>
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+            Why Choose CyberGuard
+          </h2>
+          <p className="max-w-[85%] text-muted-foreground md:text-xl">
+            Stay informed with the latest cybersecurity trends, threats, and
+            solutions from industry experts.
+          </p>
+        </div>
+
+        <div className="mx-auto mt-16 grid max-w-5xl gap-8 md:grid-cols-3">
+          <FeatureCard
+            icon={<AlertTriangle className="h-12 w-12 text-primary" />}
+            title="Threat Intelligence"
+            description="Real-time updates on emerging cyber threats and vulnerabilities to keep you one step ahead."
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
+          <FeatureCard
+            icon={<Eye className="h-12 w-12 text-primary" />}
+            title="Privacy Guides"
+            description="Practical advice on protecting your privacy online and securing your personal data."
           />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
+          <FeatureCard
+            icon={<Bell className="h-12 w-12 text-primary" />}
+            title="Security Alerts"
+            description="Timely notifications about critical security patches and urgent threats requiring immediate action."
           />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FeatureCard({
+  icon,
+  title,
+  description,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+}) {
+  return (
+    <div className="group relative overflow-hidden rounded-3xl border bg-background p-6 shadow-sm transition-all hover:shadow-md">
+      <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-primary/10 transition-all group-hover:scale-150"></div>
+      <div className="relative">
+        {icon}
+        <h3 className="mt-4 text-xl font-bold">{title}</h3>
+        <p className="mt-2 text-muted-foreground">{description}</p>
+        <div className="mt-6 flex items-center text-sm font-medium text-primary">
+          Learn more
+          <ArrowRight className="ml-1 h-4 w-4" />
+        </div>
+      </div>
     </div>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="border-t bg-background">
+      <div className="border-t">
+        <div className="container mx-auto flex flex-col items-center justify-between gap-4 py-6">
+          <p className="text-xs text-muted-foreground">
+            © {new Date().getFullYear()} SecureBlog. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
   );
 }
