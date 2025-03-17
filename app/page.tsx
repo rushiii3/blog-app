@@ -10,8 +10,8 @@ import {
   ArrowRight,
 } from "lucide-react";
 import ArticleSection from "@/components/ArticleSection";
-
-
+export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
 
 export default async function LandingPage() {
   // const schemaData = {
