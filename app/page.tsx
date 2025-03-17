@@ -34,16 +34,14 @@ export default async function LandingPage() {
   //   datePublished: "2024-03-15",
   //   dateModified: "2024-03-16",
   // };
-
-  const data = await fetch("http://localhost:3000/api")
-  const posts = await data.json()  
+ 
   return (
     <>
       <div className="flex min-h-screen flex-col bg-background">
         <main className="flex-1">
           <HeroSection />
           <FeaturesSection />
-          <ArticleSection data={posts} />
+          <ArticleSection />
         </main>
         <Footer />
       </div>

@@ -131,7 +131,7 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
     openGraph: {
       title: post.title,
       description: post.description,
-      url: "https://nextjs.org",
+      url: `${process.env.NEXT_PUBLIC_URL!}`,
       siteName: "SecureBlog",
       images: [
         {
@@ -154,8 +154,8 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
         "max-snippet": -1,
       },
     },
-    alternates:{
-      canonical: `http://localhost:3000/blog/${post.slug}`
-    }
+    alternates: {
+      canonical: `${process.env.NEXT_PUBLIC_URL!}/blog/${post.slug}`,
+    },
   };
 }

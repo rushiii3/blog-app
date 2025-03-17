@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     title: "SecureBlog - Stay Secure in the Digital World",
     description:
       "SecureBlog provides expert insights, the latest news, and practical advice on cybersecurity to help protect your digital life. Learn about threat intelligence, privacy guides, and security alerts.",
-    url: "https://nextjs.org",
+    url: `${process.env.NEXT_PUBLIC_URL!}`,
     siteName: "SecureBlog",
     images: [
       {
@@ -59,9 +59,9 @@ export const metadata: Metadata = {
     shortcut: "/icon1.png",
     apple: "/apple-icon.png",
   },
-  alternates:{
-    canonical: "http://localhost:3000/"
-  }
+  alternates: {
+    canonical: `${process.env.NEXT_PUBLIC_URL!}`,
+  },
 };
 
 export default function RootLayout({
