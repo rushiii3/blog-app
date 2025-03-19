@@ -7,6 +7,7 @@ import Providers from "./provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_URL!),
   title: "SecureBlog - Stay Secure in the Digital World",
   description:
     "SecureBlog provides expert insights, the latest news, and practical advice on cybersecurity to help protect your digital life. Learn about threat intelligence, privacy guides, and security alerts.",
