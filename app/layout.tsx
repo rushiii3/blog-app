@@ -63,6 +63,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: `${process.env.NEXT_PUBLIC_URL!}`,
   },
+  verification:{
+    google:'A2i433TZ2GTLFjQeFAVBw3EyXbGQt-lkl5SYOYlmqqA'
+  }
 };
 
 export default function RootLayout({
