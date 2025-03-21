@@ -7,6 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/api/',
     },
-    sitemap: `${process.env.NEXT_PUBLIC_URL!}/sitemap.xml`,
+    sitemap: `${process.env.NEXT_PUBLIC_URL!}/sitemap.xml/`,
+    host: process.env.NEXT_PUBLIC_URL!,
   }
 }
